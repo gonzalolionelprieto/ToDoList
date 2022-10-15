@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useEffect } from "react";
 import { useState } from "react";
 
 import "../src/index.css";
@@ -8,16 +8,41 @@ import { TodoList } from "./components/TodoList.js";
 import { TodoItem } from "./components/TodoItem.js";
 import { CreateTodoButtom } from "./components/CreateTodoButtom.js";
 
-/* array con los todos harcodeados */
-const defaultTodos = [
-  { text: "Cortar cebolla", completed: true },
-  { text: "Tormar el curso de intro a react", completed: true },
-  { text: "Llorar con la llorona", completed: false },
-];
+function useLocalStorage(itemName, initialValue) {
+  const [loading, setLoading] = useState(true);
+  const [item, setitem] = useState(initialValue);
+  useEffect(() => {
+    setTimeout(() => {
+      const localStorageItem = localStorage.getItem(itemName);
+      let parsedItems;
+      /* si no hay nada en el storage */
+      if (!localStorageItem) {
+        localStorage.setItem(itemName, JSON.stringify(initialValue));
+        parsedItems = initialValue;
+      } else {
+        parsedItems = JSON.parse(localStorageItem);
+      }
+      setitem(parsedItems);
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  /* funcion para persistir datos en el local storage */
+  const saveitem = (newItem) => {
+    const stringifieditem = JSON.stringify(newItem);
+    localStorage.setItem(itemName, stringifieditem);
+    setitem(newItem);
+  };
+
+  return { item, saveitem, loading };
+}
 
 function App() {
-  /* los estados no se pueden poner arriba de la funcion componente , se escribe arriba del return */
-  const [todos, setTodos] = useState(defaultTodos);
+  const {
+    item: todos,
+    saveitem: saveToDos,
+    loading,
+  } = useLocalStorage(`TODOS_V1`, []);
 
   const todosCompleted = todos.filter((todo) => !!todo.completed).length;
   const totalTodos = todos.length;
@@ -42,6 +67,24 @@ function App() {
     });
   }
 
+  /* esta funcion cada vez que reciba un texto va a buscar cual de los items de todos cumple con esa condicion */
+  const completeToDos = (text) => {
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
+
+    const newTodos = [...todos]; /*estamos clonando nuestra lista de todos */
+    newTodos[
+      todoIndex
+    ].completed = true; /* estamos marcando al toDo que cumple con la condicion de tener el mismo texto Y marcamos la propiedad completed del toDo como true  */
+    saveToDos(
+      newTodos
+    ); /* actualizamos nuestro estado para re-renderizar la app */
+  };
+
+  function deleteTodo(text) {
+    const newTodos = todos.filter((todo) => todo.text !== text);
+    saveToDos(newTodos);
+  }
+
   return (
     <react.Fragment>
       <TodoCounter todosCompleted={todosCompleted} totalTodos={totalTodos} />
@@ -59,6 +102,10 @@ function App() {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            onComplete={() =>
+              completeToDos(todo.text)
+            } /* llamar a la funcion enviandole el texto de ese todo,estamos llamando a la funcion cada vez que le demos click al check */
+            onDelete={() => deleteTodo(todo.text)}
           />
         ))}
       </TodoList>
