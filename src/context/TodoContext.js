@@ -7,7 +7,7 @@ const TodoContext = createContext();
 function TodoProvider(props) {
   const {
     item: todos,
-    saveitem: saveToDos,
+    saveItem: saveToDos,
     loading,
     error,
   } = useLocalStorage(`TODOS_V1`, []);
@@ -16,6 +16,7 @@ function TodoProvider(props) {
   const totalTodos = todos.length;
 
   const [search, setSearch] = useState(""); /* state del search declarado */
+  const [openModal,setOpenModal]=useState(false)/*state del modal declarado */
 
   /* Setter del search (La función que se ocupa de actualizar nuestro estado) */
   const onSearchValueChange = (event) => {
@@ -34,6 +35,16 @@ function TodoProvider(props) {
       return todoText.includes(searchText);
     });
   }
+
+  // Función para añadir un nuevo TODO
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      completed: false,
+      text,
+    });
+    saveToDos(newTodos);
+  };
 
   /* esta funcion cada vez que reciba un texto va a buscar cual de los items de todos cumple con esa condicion */
   const completeToDos = (text) => {
@@ -64,7 +75,10 @@ function TodoProvider(props) {
         onSearchValueChange,
         searchedTodos,
         todosCompleted,
+        addTodo,
         deleteTodo,
+        openModal,
+        setOpenModal,
       }}
     >
       {props.children}
