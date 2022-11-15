@@ -41,7 +41,7 @@ function AppUI() {
             
           </div>
         </div>
-        <div className="flex flex-col w-96 mx-auto  h-3/6 max-h-max border">
+        <div className="flex flex-col w-96 mx-auto  h-3/6 max-h-max ">
           <TodoCounter />
           <TodoSearch />
           <TodoList>

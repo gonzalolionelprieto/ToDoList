@@ -20,7 +20,6 @@ function TodoProvider(props) {
 
   /* Setter del search (La función que se ocupa de actualizar nuestro estado) */
   const onSearchValueChange = (event) => {
-    console.log(event.target.value);
     setSearch(event.target.value);
   };
 
@@ -46,7 +45,7 @@ function TodoProvider(props) {
     saveToDos(newTodos);
   };
 
-  /* esta funcion cada vez que reciba un texto va a buscar cual de los items de todos cumple con esa condicion */
+
   const completeToDos = (text) => {
     const todoIndex = todos.findIndex((todo) => todo.text === text);
 

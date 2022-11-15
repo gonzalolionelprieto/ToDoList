@@ -11,10 +11,28 @@
   
 
   .Icon-check--active {
-    color: #4caf50;
+    color: #000000;
+    animation-name: checked;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-duration: 0.7s;
+
+  }
+
+  @keyframes checked{
+    
+    25%{
+      color: #f1a04d;
+      scale: 1.2;
+    }
+
+    100%{
+      color: #f1a04d;
+      scale: 1;
+    }
   }
   
  
   .Icon-delete:hover {
-    color: red;
+    color: #e86969;
   }

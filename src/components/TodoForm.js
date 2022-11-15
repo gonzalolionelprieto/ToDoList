@@ -41,7 +41,7 @@ function TodoForm({ formTitle, cancelBtn }) {
           value={newTodoValue}
           onChange={onWrite}
           placeholder="Nueva tarea.."
-          className="rounded-lg drop-shadow-2xl w-full h-11/12 text-left p-3 resize-none "
+          className="rounded-lg drop-shadow-2xl w-full h-11/12 text-left p-3 resize-none text-slate-900 "
           
           rows="6"
         />
@@ -60,7 +60,7 @@ function TodoForm({ formTitle, cancelBtn }) {
 
           <button
             type="submit"
-            className="px-5 py-2 bg-yellow-400 my-4 rounded-lg text-sm font-bold"
+            className="px-5 py-2 bg-orange-400 my-4 rounded-lg text-sm font-bold"
           >
             Create task
           </button>
