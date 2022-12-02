@@ -11,5 +11,5 @@ body{
 }
 
 .bg-yellow{
-    background-color: #f1e27f;
+    background-color: #f1e27f !important;
 }
