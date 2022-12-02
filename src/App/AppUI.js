@@ -4,7 +4,6 @@ import { TodoCounter } from "../components/TodoCounter";
 import { TodoForm } from "../components/TodoForm";
 import { TodoItem } from "../components/TodoItem";
 import { TodoList } from "../components/TodoList";
-import { TodoSearch } from "../components/TodoSearch";
 import { TodoContext } from "../context/TodoContext";
 import { Modal } from "../modal/Modal";
 import "../components/styles/AppUi.css";
