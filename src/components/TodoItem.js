@@ -1,7 +1,9 @@
 import React from "react";
 import "../components/styles/TodoItem.css";
-import { BsFillCheckSquareFill } from "react-icons/bs";
-import { ImCross } from "react-icons/im";
+
+import { AiOutlineCheckCircle } from "react-icons/ai";
+
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 
 function TodoItem(props) {
@@ -9,16 +11,16 @@ function TodoItem(props) {
   return (
    
 
-      <li className="flex justify-evenly items-center bg-slate-50  rounded-xl my-5 shadow-2xl  ">
+      <li className="flex justify-evenly items-center bg-slate-50  rounded-xl my-5 shadow-lg shadow-slate-900/50  ">
         
         
         <span
-          className={` w-10 text-center ml-2 p-1 rounded ${
+          className={`Icon-check w-20 text-center ml-2 p-1 rounded  ${
             props.completed && "Icon-check--active"
           }`}
           onClick={props.onComplete}
         >
-         <BsFillCheckSquareFill width={"1.5em"} height={"1.5em"}/>
+         <AiOutlineCheckCircle size={"1.7em"}/>
         </span>
 
         <div className="  w-64">
@@ -33,8 +35,8 @@ function TodoItem(props) {
 
 
 
-        <span className="w-8 text-center Icon-delete" onClick={props.onDelete}>
-          <ImCross className="w-full"/>
+        <span className="w-20 text-center Icon-delete " onClick={props.onDelete} >
+          <AiOutlineCloseCircle size={"1.6em"} />
         </span>
       </li>
     

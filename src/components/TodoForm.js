@@ -31,17 +31,18 @@ function TodoForm({ formTitle, cancelBtn }) {
   };
 
   return (
-    <div className="container w-8/12 mx-auto h-96">
+    <div className="container w-full mx-auto h-full flex flex-lg-none justify-center items-center ">
       <form
         onSubmit={onSubmit}
-        className=" py-4 flex flex-col justify-center items-center mx-auto  "
+        className=" py-4 flex flex-col justify-center items-center mx-auto  w-72"
       >
         <label className="flex font-bold  w-full my-3">{formTitle}</label>
         <textarea
           value={newTodoValue}
+          maxLength="500"
           onChange={onWrite}
-          placeholder="Nueva tarea.."
-          className="rounded-lg drop-shadow-2xl w-full h-11/12 text-left p-3 resize-none text-slate-900 "
+          placeholder="New task.."
+          className="rounded-lg drop-shadow-xl w-full h-11/12 text-left p-3 resize-none text-slate-900 focus-visible:outline-none    "
           
           rows="6"
         />
@@ -60,7 +61,7 @@ function TodoForm({ formTitle, cancelBtn }) {
 
           <button
             type="submit"
-            className="px-5 py-2 bg-orange-400 my-4 rounded-lg text-sm font-bold"
+            className="px-5 py-2 bg-yellow my-4 rounded-lg text-sm font-bold"
           >
             Create task
           </button>

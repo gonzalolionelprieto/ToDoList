@@ -10,7 +10,7 @@ function CreateTodoButtom(props){
       };
 
     return(
-        <button className="CreateTodoButton  flex justify-center items-center lg:hidden " onClick={onClickButton}>+</button>
+        <button className="CreateTodoButton  flex justify-center items-center lg:hidden bg-yellow" onClick={onClickButton}>+</button>
     );
 }
 

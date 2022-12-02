@@ -16,7 +16,8 @@ function TodoProvider(props) {
   const totalTodos = todos.length;
 
   const [search, setSearch] = useState(""); /* state del search declarado */
-  const [openModal,setOpenModal]=useState(false)/*state del modal declarado */
+  const [openModal, setOpenModal] =
+    useState(false); /*state del modal declarado */
 
   /* Setter del search (La función que se ocupa de actualizar nuestro estado) */
   const onSearchValueChange = (event) => {
@@ -37,17 +38,23 @@ function TodoProvider(props) {
 
   // Función para añadir un nuevo TODO
   const addTodo = (text) => {
-    const newTodos = [...todos];
-    newTodos.push({
-      completed: false,
-      text,
-    });
-    saveToDos(newTodos);
+    
+    if (text ==="" || text ===" " ||text===null ||text ===undefined || text.trim()==="") {
+      alert("Please write something to be able to add ..");
+      
+    } else {
+      const newTodos = [...todos];
+      newTodos.push({
+        completed: false,
+        text,
+        id: +Date.now(),
+      });
+      saveToDos(newTodos);
+    }
   };
 
-
-  const completeToDos = (text) => {
-    const todoIndex = todos.findIndex((todo) => todo.text === text);
+  const completeToDos = (id) => {
+    const todoIndex = todos.findIndex((todo) => todo.id === id);
 
     const newTodos = [...todos]; /*estamos clonando nuestra lista de todos */
     newTodos[
@@ -58,8 +65,8 @@ function TodoProvider(props) {
     ); /* actualizamos nuestro estado para re-renderizar la app */
   };
 
-  function deleteTodo(text) {
-    const newTodos = todos.filter((todo) => todo.text !== text);
+  function deleteTodo(id) {
+    const newTodos = todos.filter((todo) => todo.id !== id);
     saveToDos(newTodos);
   }
 
@@ -85,5 +92,4 @@ function TodoProvider(props) {
   );
 }
 
-
-export {TodoContext,TodoProvider};
+export { TodoContext, TodoProvider };

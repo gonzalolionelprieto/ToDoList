@@ -1,6 +1,4 @@
-.TodoItem {
-    
-  }
+
   
 
   .TodoItem-p--complete {
@@ -8,10 +6,11 @@
   }
   
  
-  
+  .Icon-check:hover{
+    color: #f1a04d;
+  }
 
   .Icon-check--active {
-    color: #000000;
     animation-name: checked;
     animation-timing-function: linear;
     animation-fill-mode: both;
