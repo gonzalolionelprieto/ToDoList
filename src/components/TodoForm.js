@@ -26,7 +26,7 @@ function TodoForm({ formTitle, cancelBtn }) {
     addTodo(newTodoValue);
     // Cerramos nuestro modal
     setOpenModal(false);
-    // También estaría bien resetear nuestro formulario
+    //  resetear nuestro formulario
     setNewTodoValue("");
   };
 
